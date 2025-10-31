@@ -1,0 +1,315 @@
+@use 'base/variables' as *
+    
+*
+    box-sizing: border-box
+    margin: 0
+    padding: 0
+    -webkit-text-size-adjust: none
+    &::-webkit-scrollbar
+        width: 8px
+        height: 5px
+    &::-webkit-scrollbar-track
+        background: $white
+    &::-webkit-scrollbar-thumb 
+        background-color: $color
+body
+    color: $black
+    min-height: 100vh
+    display: flex
+    flex-direction: column
+    font-family: 'Arial', sans-serif
+    font-size: 16px
+    font-weight: 400
+    line-height: 1.4
+a 
+    color: inherit
+    text-decoration: none
+    transition: 0.4s all
+    &:not(.no-hover)
+        &:hover, &.active
+            color: $color
+strong, b 
+    font-weight: 700
+html, body 
+    &.fixed
+        overflow: hidden
+.page-wrap
+    overflow: hidden
+    display: flex
+    flex-direction: column
+    flex: 1
+footer
+    margin-top: auto
+main 
+    position: relative
+    flex: 1
+img, svg 
+    max-width: 100%
+    max-height: 100%
+    width: auto
+    height: auto
+    object-fit: contain
+picture
+    display: flex
+.container
+    position: relative
+    margin: 0 auto
+    width: 100%
+    max-width: 1920px
+    padding-right: 100px
+    padding-left: 100px
+.img
+    &_bg
+        position: absolute
+        width: 100%
+        height: 100%
+        object-fit: cover
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+        z-index: 0
+        pointer-events: none
+.default-text
+    h2, h3, h4, h5, h6, p, table, ul, ol
+        &:last-child
+            margin-bottom: 0 !important
+        &:first-child
+            margin-top: 0 !important
+    h2
+        margin-top: 48px
+        margin-bottom: 24px
+    h3, h4, h5, h6
+        margin-top: 24px
+        margin-bottom: 24px
+    p, img 
+        margin: 24px 0px
+    img 
+        margin-left: auto
+        margin-right: auto
+        display: block
+    table
+        border-collapse: collapse
+        width: 100%
+        max-width: 100%
+        margin: 24px 0px
+        td 
+            border: 1px solid $black
+            padding: 10px
+    ol, ul 
+        margin: 24px 0px
+        padding-left: 1em
+    a 
+        text-decoration: underline
+.text_white
+    table
+        td 
+            border: 1px solid $white
+h1, h2, h3, h4, h5, h6
+    font-family: 'Manrope', 'Arial', sans-serif
+    font-weight: 700
+    text-transform: uppercase
+h1
+    word-break: break-word
+    margin: 0
+    line-height: normal
+    font-size: 48px
+h2 
+    font-size: 40px
+    line-height: normal
+h3 
+    font-size: 32px
+    line-height: normal
+h4
+    font-size: 24px
+h5 
+    font-size: 18px
+h6 
+    font-size: 16px
+.text 
+    &_normal
+        font-style: normal
+    &_italic
+        font-style: italic
+    &_center
+        text-align: center
+    &_right 
+        text-align: right
+    &_black
+        color: $black
+    &_white
+        color: $white
+    &_color 
+        color: $color
+        &-light
+            color: $colorLight
+        &-dark 
+            color: $colorDark
+    &_underline
+        text-decoration: underline
+    &_upper 
+        text-transform: uppercase
+    &_nowrap
+        white-space: nowrap
+    &_lbreak
+        word-break: break-word
+    &_lt
+        text-decoration: line-through
+    &_ff 
+        &Arial
+            font-family: 'Arial', sans-serif
+        &Manrope
+            font-family: 'Manrope', 'Arial', sans-serif
+    &_fw 
+        &100
+            font-weight: 100
+        &200
+            font-weight: 200
+        &300
+            font-weight: 300
+        &400
+            font-weight: 400
+        &500
+            font-weight: 500
+        &600
+            font-weight: 600
+        &700
+            font-weight: 700
+        &800
+            font-weight: 800
+        &900
+            font-weight: 900
+    &_fz 
+        &14
+            font-size: 14px
+        &16
+            font-size: 16px
+        &18
+            font-size: 18px
+        &22
+            font-size: 22px
+        &24
+            font-size: 24px
+        &32
+            font-size: 32px
+            line-height: normal
+        &40
+            font-size: 40px
+            line-height: normal
+        &48
+            font-size: 48px
+            line-height: normal
+    &_animate
+        position: relative
+        .or
+            position: relative
+            display: inline
+            opacity: 0
+            bottom: -14px
+            font-style: inherit
+        &.anim
+            .or
+                opacity: 1
+                bottom: 0px
+.elem
+    &_animate 
+        transition: 1s all
+        &:not(.opacity)
+            transform: rotateX(90deg)
+        &.opacity
+            opacity: 0
+            &.anim 
+                opacity: 1
+        &:not(.opacity)
+            &.anim
+                transform: rotateX(00deg)
+        &.left, &.right, &.top, &.bott, &.scale
+            transition: 1s all
+            opacity: 0
+            &.anim 
+                opacity: 1
+        &.scale
+            transform: scale(0.5)
+            &.anim
+                transform: scale(1)
+        &.top
+            transform: translate3d(0, 60px, 0)
+            &.anim
+                transform: translate3d(0, 0, 0)
+        &.bott
+            transform: translate3d(0, -60px, 0)
+            &.anim
+                transform: translate3d(0, 0, 0)
+        &.right
+            transform: translate3d(-60px, 0, 0)
+            &.anim
+                transform: translate3d(0, 0, 0)
+        &.left
+            transform: translate3d(60px, 0, 0)
+            &.anim
+                transform: translate3d(0, 0, 0)
+        &.custom 
+            transform: none
+            &.anim 
+                transform: none
+.fancybox__content
+    padding: 0 !important
+    .framed-video
+        width: 900px
+        height: auto
+        max-width: 94vw
+        aspect-ratio: 1.77778 / 1
+.slider
+    &-list
+        user-select: none
+        touch-action: pan-y
+        -webkit-tap-highlight-color: transparent
+        cursor: grab
+        max-width: 100%
+        overflow: hidden
+        &.grabbing
+            cursor: grabbing
+    &-track 
+        transition: transform 0.5s ease 0s
+        display: flex
+        width: fit-content
+        &.fast 
+            transition: none
+            pointer-events: none
+.btn 
+    position: relative
+    display: flex
+    align-items: center
+    justify-content: center
+    text-align: center
+    border: none
+    background: $colorDark
+    outline: none
+    cursor: pointer
+    width: fit-content
+    font-weight: 700
+    font-family: 'Manrope', 'Arial', sans-serif
+    color: $white !important
+    padding: 20px 30px
+    border-radius: 50px
+    transition: 0.4s all
+    overflow: hidden
+    & > *
+        pointer-events: none
+    span 
+        position: relative
+        z-index: 2
+    &::before
+        content: ''
+        position: absolute
+        width: 100%
+        height: 100%
+        border-radius: 50px
+        z-index: 0
+        background: $color
+        top: 0
+        right: 100%
+        pointer-events: none
+        transition: 0.7s all
+    &:hover, &.active
+        &::before 
+            right: 0

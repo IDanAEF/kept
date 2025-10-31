@@ -1,0 +1,329 @@
+@use 'base/variables' as *
+
+@media (min-width: 1920px)
+    .home
+        &__persons
+            --sliderWidth: 624px
+            --itemHeight: 432px
+            --itemHeightPerc: 4.32
+            --linkWidth: 510px
+            --linkWidthPerc: 5.1
+            --linkLongWidth: 380px
+            --linkLongWidthPerc: 3.8
+
+            &-slider
+                &-item 
+                    a 
+                        .person
+                            &-descr 
+                                font-size: 14px
+                            &-text 
+                                padding: 25px
+                            &-title 
+                                &-name 
+                                    strong 
+                                        font-size: 22px
+                                    span 
+                                        font-size: 16px
+                                img 
+                                    width: 58px
+                                    min-width: 58px
+@media (max-width: 1700px)
+    .container
+        padding-left: 70px
+        padding-right: 70px
+    .home
+        &__promo
+            .container 
+                min-height: 700px
+            &-video 
+                width: calc(100% - 600px - 75px)
+            &-logo 
+                width: 260px
+                min-width: 260px
+                margin-bottom: 60px
+    .footer
+        padding-bottom: 30px !important
+        &__persons
+            gap: 25px
+        &__logo 
+            gap: 20px
+            img 
+                width: 260px
+                min-width: 260px
+@media (max-width: 1400px)
+    .container
+        padding-left: 50px
+        padding-right: 50px
+    h1
+        font-size: 40px
+    h2 
+        font-size: 32px
+    h3 
+        font-size: 24px
+    h4
+        font-size: 20px
+    h5 
+        font-size: 16px
+    .text
+        &_fz 
+            &18
+                font-size: 16px
+            &22
+                font-size: 18px
+            &24
+                font-size: 20px
+            &32
+                font-size: 24px
+            &40
+                font-size: 32px
+            &48
+                font-size: 40px
+    .page
+        &__block 
+            padding-top: 50px
+            padding-bottom: 50px
+            &.pt140
+                padding-top: 100px
+            &.pb140
+                padding-bottom: 100px
+        &__title 
+            margin-bottom: 32px
+            p
+                margin-top: 16px
+    .footer
+        &__wrap 
+            gap: 22px
+        &__logo 
+            gap: 10px
+            flex-direction: column
+            align-items: flex-start
+    .home
+        &__promo 
+            .container
+                min-height: 600px
+            &-text 
+                max-width: 460px
+            &-logo 
+                margin-bottom: 42px
+            &-video 
+                width: calc(100% - 480px - 50px)
+        &__persons
+            --sliderWidth: 45vw
+            --itemHeight: 31vw
+            --itemHeightPerc: calc(31 * 19.2 / 100)
+            --linkWidth: 36vw
+            --linkWidthPerc: calc(36 * 19.2 / 100)
+            --linkLongWidth: 26vw
+            --linkLongWidthPerc: calc(26 * 19.2 / 100)
+
+            &-slider
+                &-item 
+                    a 
+                        .person
+                            &-descr 
+                                font-size: 1vw
+                            &-text 
+                                padding: 1.8vw
+                            &-title 
+                                &-name 
+                                    strong 
+                                        font-size: 1.6vw
+                                        margin-bottom: 4px
+                                    span 
+                                        font-size: 1.15vw
+                        &:hover 
+                            .person
+                                &-descr
+                                    margin-top: 5px
+                    &.slower
+                        transform: rotate(90deg) translateZ(-.1px) scale(1.1) translateX(0) translateY(calc(-17px * var(--itemHeightPerc)))
+                    &.faster
+                        transform: rotate(90deg) translateZ(.15px) scale(.8) translateX(calc(-21px * var(--linkWidthPerc))) translateY(calc(11px * var(--itemHeightPerc)))
+                    &.slower-down
+                        transform: rotate(90deg) translateZ(-.1px) scale(1.1) translateX(calc(-26.17px * var(--linkWidthPerc))) translateY(calc(-17.86px * var(--itemHeightPerc)))
+                    &.last
+                        transform: rotate(90deg) translateZ(-.2px) scale(1.1) translateX(calc(5.9px * var(--linkWidthPerc))) translateY(calc(-0.9px * var(--itemHeightPerc)))
+@media (max-width: 1200px)
+    .default-text
+        h2, h3, h4, h5, h6
+            margin-top: 24px
+            margin-bottom: 16px
+        p 
+            margin: 16px 0px
+        table
+            margin: 16px 0px
+            td 
+                padding: 5px
+        ol, ul 
+            margin: 16px 0px
+    .home
+        &__promo 
+            .container 
+                min-height: 500px
+    .footer
+        &__wrap
+            flex-direction: column
+        &__logo 
+            align-items: center
+            flex-direction: row
+            gap: 20px
+@media (max-width: 992px) 
+    .container
+        padding-left: 25px
+        padding-right: 25px
+    body 
+        font-size: 14px
+    h1
+        font-size: 28px
+    h2 
+        font-size: 24px
+    h3 
+        font-size: 20px
+    h4
+        font-size: 18px
+    h6 
+        font-size: 14px
+    .text
+        &_fz 
+            &14
+                font-size: 12px
+            &16
+                font-size: 14px
+            &22
+                font-size: 16px
+            &24
+                font-size: 18px
+            &32
+                font-size: 20px
+            &40
+                font-size: 24px
+            &48
+                font-size: 28px 
+    .page
+        &__block 
+            padding-top: 35px
+            padding-bottom: 35px
+            &.pt140
+                padding-top: 70px
+            &.pb140
+                padding-bottom: 70px
+        &__title
+            margin-bottom: 28px
+    .home
+        &__promo 
+            .container 
+                padding-top: 20px
+                padding-bottom: 20px
+                min-height: 410px
+            &-logo 
+                width: 172px
+                min-width: 172px
+            &-text
+                max-width: 380px
+            &-video
+                width: calc(100% - 395px - 25px)
+        &__persons
+            --sliderWidth: 60vw
+            --itemHeight: 42vw
+            --itemHeightPerc: calc(42 * 19.2 / 100)
+            --linkWidth: 48vw
+            --linkWidthPerc: calc(48 * 19.2 / 100)
+            --linkLongWidth: 38vw
+            --linkLongWidthPerc: calc(38 * 19.2 / 100)
+
+            &-slider
+                &-item 
+                    a 
+                        .person
+                            &-descr 
+                                font-size: 1.4vw
+                            &-text 
+                                padding: 2.6vw
+                            &-title 
+                                &-name 
+                                    strong 
+                                        font-size: 2.4vw
+                                    span 
+                                        font-size: 1.6vw
+                                img 
+                                    width: 5vw
+                                    min-width: 5vw
+                    &.slower
+                        transform: rotate(90deg) translateZ(-.1px) scale(1.1) translateX(0) translateY(calc(-12px * var(--itemHeightPerc)))
+                    &.slower-donw
+                        transform: rotate(90deg) translateZ(-.1px) scale(1.1) translateX(calc(-26.17px * var(--linkWidthPerc))) translateY(calc(-12.86px * var(--itemHeightPerc)))
+                    &.vertical
+                        transform: rotate(90deg) translateZ(-.1px) scale(1.15) translateX(calc(-16.4px * var(--linkLongWidthPerc))) translateY(0)
+                    &.slower2
+                        transform: rotate(90deg) translateZ(-.2px) scale(1.3) translateX(calc(-13.17px * var(--linkWidthPerc))) translateY(calc(4.86px * var(--itemHeightPerc)))
+@media (max-width: 768px)
+    .home
+        &__promo
+            .container 
+                padding-bottom: 0
+            &-text
+                padding-bottom: 20px
+                max-width: 100%
+            &-video 
+                position: relative
+                top: unset
+                right: unset
+                bottom: unset
+                left: 50%
+                transform: translateX(-50%)
+                width: 100vw
+                aspect-ratio: 1.5
+        &__persons
+            --sliderWidth: 380px
+            --itemHeight: 260px
+            --itemHeightPerc: 3.6
+            --linkWidth: 300px
+            --linkWidthPerc: 3
+            --linkLongWidth: 240px
+            --linkLongWidthPerc: 2.7
+
+            &-slider
+                &-item 
+                    a 
+                        .person
+                            &-descr 
+                                font-size: 10px
+                            &-text 
+                                padding: 10px
+                            &-title 
+                                &-name 
+                                    strong 
+                                        font-size: 14px
+                                    span 
+                                        font-size: 12px
+                                img 
+                                    width: 21px
+                                    min-width: 21px
+    .footer
+        &__logo 
+            img 
+                width: 180px
+                min-width: 180px
+        &__persons
+            gap: 12px
+            flex-direction: column
+@media (max-width: 576px) 
+    .container
+        padding-left: 15px
+        padding-right: 15px
+    .home
+        &__promo 
+            &-video 
+                aspect-ratio: 1
+    .modal
+        &__close 
+            width: 23px
+            height: 23px
+            right: 0
+@media (max-width: 370px)
+    .footer
+        &__logo 
+            align-items: flex-start
+            flex-direction: column
+            gap: 10px
