@@ -38,6 +38,27 @@ html, body
     display: flex
     flex-direction: column
     flex: 1
+    &.circles
+        position: relative
+        &::before, &::after 
+            content: ''
+            position: absolute
+            width: 87.23vw
+            min-width: 500px
+            max-width: 1675px
+            aspect-ratio: 1
+            transform: translate3d(0, 0, 0)
+            border-radius: 100%
+            background: #ddf
+            filter: blur(400px)
+        &::before
+            left: 0
+            top: 0
+            transform: translate3d(-28.65%, -36.29%, 0)
+        &::after
+            bottom: 0
+            right: 0
+            transform: translate3d(32.59%, 64.17%, 0)
 footer
     margin-top: auto
 main 
@@ -75,11 +96,8 @@ picture
             margin-bottom: 0 !important
         &:first-child
             margin-top: 0 !important
-    h2
-        margin-top: 48px
-        margin-bottom: 24px
-    h3, h4, h5, h6
-        margin-top: 24px
+    h2, h3, h4, h5, h6
+        margin-top: 32px
         margin-bottom: 24px
     p, img 
         margin: 24px 0px
@@ -107,24 +125,26 @@ picture
 h1, h2, h3, h4, h5, h6
     font-family: 'Manrope', 'Arial', sans-serif
     font-weight: 700
-    text-transform: uppercase
 h1
     word-break: break-word
     margin: 0
     line-height: normal
     font-size: 48px
+    text-transform: uppercase
 h2 
     font-size: 40px
     line-height: normal
+    text-transform: uppercase
 h3 
     font-size: 32px
     line-height: normal
+    text-transform: uppercase
 h4
     font-size: 24px
 h5 
-    font-size: 18px
+    font-size: 20px
 h6 
-    font-size: 16px
+    font-size: 18px
 .text 
     &_normal
         font-style: normal
@@ -185,6 +205,8 @@ h6
             font-size: 16px
         &18
             font-size: 18px
+        &20
+            font-size: 20px
         &22
             font-size: 22px
         &24

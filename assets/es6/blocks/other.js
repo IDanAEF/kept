@@ -1,4 +1,12 @@
 const other = () => {
+    async function getData(url) {
+        let res = await fetch(url, {
+            method: "GET"
+        });
+
+        return await res.text();
+    }
+
     const hideScroll = () => {
         document.querySelector('body').classList.add('fixed');
         document.querySelector('html').classList.add('fixed');
@@ -225,11 +233,14 @@ const other = () => {
             clearTimeout(timeout);
 
             personsSliderItems.forEach(item => item.classList.remove('hover', 'linked'));
-            if (i != -1) personsSliderItems[i].classList.add('hover');
 
-            timeout = setTimeout(() => {
-                personsSliderItems[i].classList.add('linked');
-            }, 300);
+            if (i != -1) {
+                personsSliderItems[i].classList.add('hover');
+
+                timeout = setTimeout(() => {
+                    personsSliderItems[i].classList.add('linked');
+                }, 300);
+            }
         }
 
         personsSliderItems.forEach((sliderItem, i) => {
@@ -278,6 +289,74 @@ const other = () => {
             }
 
             setProgress();
+        }
+    } catch (e) {
+        console.log(e.stack);
+    }
+
+    try {
+        const tempsLoad = document.querySelectorAll('.load-temp');
+
+        tempsLoad.forEach(temp => {
+            let tempId = temp.id,
+                tempBase = temp.getAttribute('data-base') ? temp.getAttribute('data-base').trim() : '../';
+
+            getData(tempBase+'blocks/'+tempId+'.html')
+            .then((res) => {
+                temp.outerHTML = res.replaceAll('{base}', tempBase);
+            });
+        });
+    } catch (e) {
+        console.log(e.stack);
+    }
+
+    try {
+        const personCard = document.querySelector('.person__promo-card'),
+              personWrap = document.querySelector('.person__promo-wrap'),
+              personContent = document.querySelector('.person__content'),
+              personPromo = document.querySelector('.person__promo');
+        
+        if (personCard) {
+            let windowTop,
+                windowBott,
+                personWrapTop,
+                personWrapBott,
+                personCardTop,
+                personCardBott,
+                personContentTop,
+                personContentBott;
+
+            const updateVars = () => {
+                personWrapTop = personWrap.getBoundingClientRect().y + window.scrollY;
+                personWrapBott = personWrapTop + personWrap.offsetHeight;
+                personCardTop = personCard.getBoundingClientRect().y + window.scrollY;
+                personCardBott = personCardTop + personCard.offsetHeight;
+                personContentTop = personContent.getBoundingClientRect().y + window.scrollY;
+                personContentBott = personContentTop + personContent.offsetHeight;
+                windowTop = window.scrollY + +window.getComputedStyle(personPromo).paddingTop.replace('px', '');
+                windowBott = window.scrollY + window.innerHeight;
+            }
+
+            updateVars();
+
+            const setPosition = () => {
+                if (window.innerWidth > 768) {
+                    updateVars();
+
+                    if (
+                        windowTop > personWrapTop && windowBott < personContentBott
+                    ) {
+                        let offset = windowTop - personWrapTop;
+
+                        personCard.style.top = offset+'px';
+                    }
+                }
+            }
+
+            setPosition();
+
+            window.addEventListener('scroll', setPosition);
+            window.addEventListener('scale', setPosition);
         }
     } catch (e) {
         console.log(e.stack);

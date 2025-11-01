@@ -1,0 +1,61 @@
+@use 'base/variables' as *
+
+.person 
+    position: relative
+    z-index: 1
+    &__promo 
+        &-text 
+            display: flex
+            align-items: center
+            justify-content: space-between
+            gap: 30px
+            h1 
+                text-transform: none
+                font-weight: 400
+                max-width: 890px
+        .home__promo-logo 
+            margin-bottom: 22px
+        &-card 
+            width: 19.89vw
+            max-width: 382px
+            position: relative
+            transition: 0.5s top, 1s opacity !important
+            img 
+                width: 100%
+                aspect-ratio: 0.89
+                object-fit: cover
+                margin-bottom: 32px
+            strong 
+                display: block
+                margin-bottom: 12px
+    &__content 
+        &-text
+            max-width: 890px
+            margin: 0 21.45vw 0 auto
+            .comment 
+                margin: 100px 0px
+                position: relative
+                padding-left: 40px
+                & > * 
+                    position: relative
+                    z-index: 2
+                &::before
+                    content: ''
+                    position: absolute
+                    left: 0
+                    top: 50%
+                    transform: translate3d(0, -50%, 0)
+                    width: 171px
+                    aspect-ratio: 1
+                    border-radius: 100%
+                    background: #0000fe
+                    filter: blur(200px)
+                &::after
+                    content: ''
+                    position: absolute
+                    background: url('../images/icons/quot.svg') center center/contain no-repeat
+                    width: 25px
+                    height: 21px
+                    left: 0
+                    bottom: 100%
+                    z-index: 1

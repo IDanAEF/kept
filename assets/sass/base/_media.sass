@@ -28,6 +28,10 @@
                                 img 
                                     width: 58px
                                     min-width: 58px
+    .person 
+        &__content 
+            &-text
+                margin: 0 412px 0 auto
 @media (max-width: 1700px)
     .container
         padding-left: 70px
@@ -64,12 +68,14 @@
     h4
         font-size: 20px
     h5 
+        font-size: 18px
+    h6 
         font-size: 16px
     .text
         &_fz 
             &18
                 font-size: 16px
-            &22
+            &20, &22
                 font-size: 18px
             &24
                 font-size: 20px
@@ -79,6 +85,10 @@
                 font-size: 32px
             &48
                 font-size: 40px
+    .page-wrap
+        &.circles
+            &::before, &::after
+                filter: blur(150px)
     .page
         &__block 
             padding-top: 50px
@@ -98,6 +108,15 @@
             gap: 10px
             flex-direction: column
             align-items: flex-start
+    .person
+        &__promo
+            &-card 
+                width: 23vw
+        &__content
+            &-text 
+                margin: 0 25vw 0 auto
+                .comment 
+                    margin: 50px 0px
     .home
         &__promo 
             .container
@@ -161,6 +180,13 @@
         &__promo 
             .container 
                 min-height: 500px
+    .person
+        &__promo 
+            &-card
+                width: 27vw
+        &__content
+            &-text 
+                margin: 0 29vw 0 auto
     .footer
         &__wrap
             flex-direction: column
@@ -182,6 +208,8 @@
         font-size: 20px
     h4
         font-size: 18px
+    h5 
+        font-size: 16px
     h6 
         font-size: 14px
     .text
@@ -190,7 +218,7 @@
                 font-size: 12px
             &16
                 font-size: 14px
-            &22
+            &20, &22
                 font-size: 16px
             &24
                 font-size: 18px
@@ -210,6 +238,15 @@
                 padding-bottom: 70px
         &__title
             margin-bottom: 28px
+    .person
+        &__promo 
+            &-card 
+                width: 30vw
+                img 
+                    margin-bottom: 16px
+        &__content
+            &-text 
+                margin: 0 32vw 0 auto
     .home
         &__promo 
             .container 
@@ -258,6 +295,24 @@
                     &.slower2
                         transform: rotate(90deg) translateZ(-.2px) scale(1.3) translateX(calc(-13.17px * var(--linkWidthPerc))) translateY(calc(4.86px * var(--itemHeightPerc)))
 @media (max-width: 768px)
+    .page-wrap
+        &.circles
+            &::before, &::after
+                filter: blur(50px)
+    .person
+        &__promo 
+            &-text 
+                h1 
+                    font-size: 22px
+            &-card 
+                width: 37vw
+                position: static
+                top: 0 !important
+        &__content
+            &-text 
+                margin: 0
+                width: 100%
+                max-width: 100%
     .home
         &__promo
             .container 
@@ -312,6 +367,11 @@
     .container
         padding-left: 15px
         padding-right: 15px
+    .person
+        &__promo 
+            &-text 
+                h1 
+                    font-size: 20px
     .home
         &__promo 
             &-video 
@@ -321,6 +381,20 @@
             width: 23px
             height: 23px
             right: 0
+@media (max-width: 500px)
+    .person
+        &__promo 
+            .home__promo-logo
+                margin-bottom: 42px
+            &-text
+                flex-direction: column
+                h1 
+                    font-size: 22px
+            &-wrap 
+                width: 100%
+            &-card
+                width: 100%
+                margin: 0 auto 
 @media (max-width: 370px)
     .footer
         &__logo 
