@@ -15,15 +15,25 @@
                 max-width: 890px
         .home__promo-logo 
             margin-bottom: 22px
+        &-wrap 
+            position: relative
         &-card 
             width: 19.89vw
             max-width: 382px
-            position: relative
-            transition: 0.5s top, 1s opacity !important
+            transition: 1s opacity !important
+            &.hidden
+                opacity: 0
+                visibility: hidden
+            &.target
+                position: absolute
+                top: 0
+                &.fixed
+                    position: fixed
             img 
                 width: 100%
                 aspect-ratio: 0.89
                 object-fit: cover
+                object-position: center top
                 margin-bottom: 32px
             strong 
                 display: block
@@ -36,6 +46,7 @@
                 margin: 100px 0px
                 position: relative
                 padding-left: 40px
+                max-width: 570px
                 & > * 
                     position: relative
                     z-index: 2

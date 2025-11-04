@@ -1,0 +1,8 @@
+@media (min-width: 1400px) {
+    .home__persons-slider {
+        overflow: hidden;
+    }
+    .home__persons-slider-item.hover.to-left {
+        transform: rotate(90deg) translateZ(-.1px) scale(1.1) translateX(calc(-70px * var(--linkWidthPerc))) translateY(calc(-29.86px * var(--itemHeightPerc)));
+    }
+}

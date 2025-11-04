@@ -53,7 +53,7 @@ const other = () => {
         document.cookie = updatedCookie;
     }
 
-    try {
+    const animInit = () => {
         const targetElem = document.querySelectorAll('.elem_animate'),
               targetText = document.querySelectorAll('.text_animate'),
               targetFields = document.querySelectorAll('.elem_animate_field');
@@ -138,8 +138,6 @@ const other = () => {
             setAnim(targetElem);
             setAnim(targetText);
         };
-    } catch (e) {
-        console.log(e.stack);
     }
 
     try {
@@ -261,10 +259,16 @@ const other = () => {
 
     try {
         const homeVideoBlock = document.querySelector('.home__promo-video'),
-              loadingImage = document.querySelector('.loading-video');
+              loadingImage = document.querySelector('.loading-video'),
+              preloader = document.querySelector('.preloader'),
+              preloaderProgress = document.querySelector('.preloader__progress span'),
+              preloaderLine = document.querySelector('.preloader__line span');
 
-        if (loadingImage) {
+        if (loadingImage && preloader) {
             let videoSrc = loadingImage.getAttribute('data-src').trim();
+
+            preloader.classList.add('active');
+            hideScroll();
 
             const setProgress = async () => {
                 let response = await fetch(videoSrc),
@@ -277,19 +281,26 @@ const other = () => {
                     const {done, value} = await reader.read();
 
                     if (done) {
-                        loadingImage.src = videoSrc;
+                        preloader.classList.remove('active');
+                        showScroll();
+
+                        loadingImage.outerHTML = `<video src="${videoSrc}" muted autoplay loop playsinline class="img_bg"></video>`;
                         homeVideoBlock.classList.add('anim');
+                        animInit();
                         break;
                     }
 
                     receivedLength += value.length;
 
                     progress = Math.round(receivedLength / (contentLength / 100));
+
+                    preloaderProgress.textContent = progress;
+                    preloaderLine.style.width = progress + '%';
                 }
             }
 
             setProgress();
-        }
+        } else animInit();
     } catch (e) {
         console.log(e.stack);
     }
@@ -311,7 +322,7 @@ const other = () => {
     }
 
     try {
-        const personCard = document.querySelector('.person__promo-card'),
+        const personCard = document.querySelector('.person__promo-card.target'),
               personWrap = document.querySelector('.person__promo-wrap'),
               personContent = document.querySelector('.person__content'),
               personPromo = document.querySelector('.person__promo');
@@ -324,16 +335,18 @@ const other = () => {
                 personCardTop,
                 personCardBott,
                 personContentTop,
-                personContentBott;
+                personContentBott,
+                paddingTop;
 
             const updateVars = () => {
+                paddingTop = +window.getComputedStyle(personPromo).paddingTop.replace('px', '');
                 personWrapTop = personWrap.getBoundingClientRect().y + window.scrollY;
                 personWrapBott = personWrapTop + personWrap.offsetHeight;
                 personCardTop = personCard.getBoundingClientRect().y + window.scrollY;
                 personCardBott = personCardTop + personCard.offsetHeight;
                 personContentTop = personContent.getBoundingClientRect().y + window.scrollY;
                 personContentBott = personContentTop + personContent.offsetHeight;
-                windowTop = window.scrollY + +window.getComputedStyle(personPromo).paddingTop.replace('px', '');
+                windowTop = window.scrollY + paddingTop;
                 windowBott = window.scrollY + window.innerHeight;
             }
 
@@ -343,13 +356,20 @@ const other = () => {
                 if (window.innerWidth > 768) {
                     updateVars();
 
-                    if (
-                        windowTop > personWrapTop && windowBott < personContentBott
-                    ) {
+                    // if (windowTop > personWrapTop && windowBott < personContentBott) {
+                    if (windowTop > personWrapTop) {
                         let offset = windowTop - personWrapTop;
 
-                        personCard.style.top = offset+'px';
+                        // personCard.style.top = offset+'px';
+                        personCard.classList.add('fixed');
+                        personCard.style.top = paddingTop+'px';
+                    } else {
+                        personCard.classList.remove('fixed');
+                        personCard.style.top = '';
                     }
+                    // else if (windowBott >= personContentBott) {
+                    //     personCard.style.top = (paddingTop + personContentBott - windowBott)+'px';
+                    // }
                 }
             }
 
