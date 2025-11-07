@@ -53,10 +53,10 @@ const other = () => {
         document.cookie = updatedCookie;
     }
 
-    const animInit = () => {
-        const targetElem = document.querySelectorAll('.elem_animate'),
-              targetText = document.querySelectorAll('.text_animate'),
-              targetFields = document.querySelectorAll('.elem_animate_field');
+    const animInit = (container = '') => {
+        const targetElem = container ? container.querySelectorAll('.elem_animate') : document.querySelectorAll('.elem_animate'),
+              targetText = container ? container.querySelectorAll('.text_animate') : document.querySelectorAll('.text_animate'),
+              targetFields = container ? container.querySelectorAll('.elem_animate_field') : document.querySelectorAll('.elem_animate_field');
 
             
         if (window.innerWidth > 992) {
@@ -138,6 +138,41 @@ const other = () => {
             setAnim(targetElem);
             setAnim(targetText);
         };
+    }
+
+    const personsSlider = () => {
+        const personsSliderWrap = document.querySelector('.home__persons-slider'), 
+              personsSliderItems = document.querySelectorAll('.home__persons-slider-item');
+
+        let timeout;
+
+        const setHover = (i = -1) => {
+            clearTimeout(timeout);
+
+            personsSliderItems.forEach(item => item.classList.remove('hover', 'linked'));
+
+            if (i != -1) {
+                personsSliderItems[i].classList.add('hover');
+                personsSliderWrap.classList.add('hovered');
+
+                timeout = setTimeout(() => {
+                    personsSliderItems[i].classList.add('linked');
+                }, 300);
+            } else personsSliderWrap.classList.remove('hovered');
+        }
+
+        personsSliderItems.forEach((sliderItem, i) => {
+            let link = sliderItem.querySelector('a');
+
+            link.addEventListener('click', (e) => {
+                if (!sliderItem.classList.contains('linked'))
+                    e.preventDefault();
+
+                setHover(i)
+            });
+            link.addEventListener('mouseenter', () => setHover(i));
+            link.addEventListener('mouseleave', () => setHover(-1));
+        });
     }
 
     try {
@@ -223,41 +258,6 @@ const other = () => {
     }
 
     try {
-        const personsSliderItems = document.querySelectorAll('.home__persons-slider-item');
-
-        let timeout;
-
-        const setHover = (i = -1) => {
-            clearTimeout(timeout);
-
-            personsSliderItems.forEach(item => item.classList.remove('hover', 'linked'));
-
-            if (i != -1) {
-                personsSliderItems[i].classList.add('hover');
-
-                timeout = setTimeout(() => {
-                    personsSliderItems[i].classList.add('linked');
-                }, 300);
-            }
-        }
-
-        personsSliderItems.forEach((sliderItem, i) => {
-            let link = sliderItem.querySelector('a');
-
-            link.addEventListener('click', (e) => {
-                if (!sliderItem.classList.contains('linked'))
-                    e.preventDefault();
-
-                setHover(i)
-            });
-            link.addEventListener('mouseenter', () => setHover(i));
-            link.addEventListener('mouseleave', () => setHover(-1));
-        });
-    } catch (e) {
-        console.log(e.stack);
-    }
-
-    try {
         const homeVideoBlock = document.querySelector('.home__promo-video'),
               loadingImage = document.querySelector('.loading-video'),
               preloader = document.querySelector('.preloader'),
@@ -284,7 +284,7 @@ const other = () => {
                         preloader.classList.remove('active');
                         showScroll();
 
-                        loadingImage.outerHTML = `<video src="${videoSrc}" muted autoplay loop playsinline class="img_bg"></video>`;
+                        loadingImage.src = videoSrc;
                         homeVideoBlock.classList.add('anim');
                         animInit();
                         break;
@@ -315,6 +315,10 @@ const other = () => {
             getData(tempBase+'blocks/'+tempId+'.html')
             .then((res) => {
                 temp.outerHTML = res.replaceAll('{base}', tempBase);
+                
+                if (tempId == 'persons') personsSlider();
+
+                animInit(document.querySelector('#'.tempId));
             });
         });
     } catch (e) {
@@ -332,7 +336,6 @@ const other = () => {
                 windowBott,
                 personWrapTop,
                 personWrapBott,
-                personCardTop,
                 personCardBott,
                 personContentTop,
                 personContentBott,
@@ -342,8 +345,7 @@ const other = () => {
                 paddingTop = +window.getComputedStyle(personPromo).paddingTop.replace('px', '');
                 personWrapTop = personWrap.getBoundingClientRect().y + window.scrollY;
                 personWrapBott = personWrapTop + personWrap.offsetHeight;
-                personCardTop = personCard.getBoundingClientRect().y + window.scrollY;
-                personCardBott = personCardTop + personCard.offsetHeight;
+                personCardBott = window.scrollY + paddingTop + personCard.offsetHeight;
                 personContentTop = personContent.getBoundingClientRect().y + window.scrollY;
                 personContentBott = personContentTop + personContent.offsetHeight;
                 windowTop = window.scrollY + paddingTop;
@@ -356,20 +358,15 @@ const other = () => {
                 if (window.innerWidth > 768) {
                     updateVars();
 
-                    // if (windowTop > personWrapTop && windowBott < personContentBott) {
-                    if (windowTop > personWrapTop) {
-                        let offset = windowTop - personWrapTop;
-
-                        // personCard.style.top = offset+'px';
+                    if (windowTop > personWrapTop && personCardBott < personContentBott) {
                         personCard.classList.add('fixed');
                         personCard.style.top = paddingTop+'px';
+                    } else if (personCardBott >= personContentBott) {
+                        personCard.style.top = (paddingTop + personContentBott - personCardBott)+'px';
                     } else {
                         personCard.classList.remove('fixed');
                         personCard.style.top = '';
                     }
-                    // else if (windowBott >= personContentBott) {
-                    //     personCard.style.top = (paddingTop + personContentBott - windowBott)+'px';
-                    // }
                 }
             }
 

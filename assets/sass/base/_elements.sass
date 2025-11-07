@@ -273,6 +273,17 @@ h6
                 transform: none
 .fancybox__content
     padding: 0 !important
+    &::before
+        content: ''
+        position: absolute
+        left: 50%
+        top: 50%
+        width: 10%
+        aspect-ratio: 1
+        pointer-events: none
+        z-index: -1
+        transform: translate(-50%, -50%)
+        background: url('../images/icons/load.gif') center center/contain no-repeat 
     .framed-video
         width: 900px
         height: auto
@@ -378,12 +389,40 @@ h6
 .fade-in-text
     span 
         color: transparent
-        text-shadow: 0px 0px 1px $black
+        text-shadow: 0px 0px 0px $black
     &.anim
         span 
-            animation: blurFadeIn 2s ease-in backwards
+            animation: blurFadeIn 1s ease-in backwards
+.touch-focus
+    width: 54px
+    overflow: visible
+    display: none
+    margin-top: 15px
+    margin-bottom: -27px
+    margin-left: auto
+    .touch-hand
+        transform-origin: center bottom
+        animation: touch-hand 1.3s ease-in-out infinite alternate
+    .touch-right
+        animation: 1.3s touch-right 0.5s ease-in-out infinite alternate
+    .touch-left
+        animation: 1.3s touch-left 1.8s ease-in-out infinite alternate
 
-
+@keyframes touch-hand
+    0%
+        transform: rotate(-20deg)
+    100%
+        transform: rotate(20deg)
+@keyframes touch-right
+    0%
+        transform: translate(0px)
+    100%
+        transform: translate(10px)
+@keyframes touch-left
+    0%
+        transform: translate(0px)
+    100%
+        transform: translate(-10px)
 @keyframes blurFadeIn
     0% 
         opacity: 0
@@ -395,5 +434,5 @@ h6
         transform: scale(1.1)
     100% 
         opacity: 1
-        text-shadow: 0px 0px 1px $black
+        text-shadow: 0px 0px 0px $black
         transform: scale(1)

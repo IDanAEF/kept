@@ -128,6 +128,31 @@
             &-video 
                 width: calc(100% - 480px - 50px)
         &__persons
+            --sliderWidth: 38.5vw
+            --itemHeight: 23.5vw
+
+            &-slider 
+                &-item 
+                    &.faster
+                        transform: rotate(90deg) translateZ(.15px) scale(.8) translateX(calc(-20px * var(--linkWidthPerc))) translateY(calc(27.31px * var(--itemHeightPerc)))
+@media (max-width: 1200px)
+    .default-text
+        h2, h3, h4, h5, h6
+            margin-top: 24px
+            margin-bottom: 16px
+        p 
+            margin: 16px 0px
+        table
+            margin: 16px 0px
+            td 
+                padding: 5px
+        ol, ul 
+            margin: 16px 0px
+    .home
+        &__promo 
+            .container 
+                min-height: 500px
+        &__persons
             --sliderWidth: 45vw
             --itemHeight: 31vw
             --itemHeightPerc: calc(31 * 19.2 / 100)
@@ -163,23 +188,6 @@
                         transform: rotate(90deg) translateZ(-.1px) scale(1.1) translateX(calc(-62px * var(--linkWidthPerc))) translateY(calc(-17.86px * var(--itemHeightPerc)))
                     &.last
                         transform: rotate(90deg) translateZ(-.2px) scale(1.1) translateX(calc(5.9px * var(--linkWidthPerc))) translateY(calc(-0.9px * var(--itemHeightPerc)))
-@media (max-width: 1200px)
-    .default-text
-        h2, h3, h4, h5, h6
-            margin-top: 24px
-            margin-bottom: 16px
-        p 
-            margin: 16px 0px
-        table
-            margin: 16px 0px
-            td 
-                padding: 5px
-        ol, ul 
-            margin: 16px 0px
-    .home
-        &__promo 
-            .container 
-                min-height: 500px
     .person
         &__promo 
             &-card
@@ -198,6 +206,8 @@
     .container
         padding-left: 25px
         padding-right: 25px
+    .touch-focus
+        display: block
     .preloader
         padding: 25px
         &__top 
@@ -386,6 +396,9 @@
             font-size: 25px
     .person
         &__promo 
+            &-card 
+                img 
+                    aspect-ratio: 1
             &-text 
                 h1 
                     font-size: 20px
